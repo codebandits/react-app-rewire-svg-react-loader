@@ -1,4 +1,5 @@
 const subject = require('./index')
+const path = require("path")
 
 describe('SVG React Loader rewire', () => {
 
@@ -9,40 +10,40 @@ describe('SVG React Loader rewire', () => {
                     test: /\.(js|jsx|mjs)$/,
                     enforce: 'pre',
                     use: [
-                        {options: {}, loader: '/path/to/eslint-loader/index.js'}
+                        {options: {}, loader: path.resolve(__dirname, '/path/to/eslint-loader/index.js')}
                     ],
-                    include: '/path/to/src'
+                    include: path.resolve(__dirname, '/path/to/src')
                 },
                 {
                     oneOf: [
                         {
                             test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
-                            loader: '/path/to/url-loader/index.js',
+                            loader: path.resolve(__dirname, '/path/to/url-loader/index.js'),
                             options: {},
                         },
                         {
                             test: /\.(js|jsx|mjs)$/,
-                            include: '/path/to/src',
-                            loader: '/path/to/babel-loader/lib/index.js',
+                            include: path.resolve(__dirname, '/path/to/src'),
+                            loader: path.resolve(__dirname, '/path/to/babel-loader/lib/index.js'),
                             options: {},
                         },
                         {
                             test: /\.css$/,
                             use: [
-                                '/path/to/style-loader/index.js',
+                                path.resolve(__dirname, '/path/to/style-loader/index.js'),
                                 {
-                                    loader: '/path/to/css-loader/index.js',
+                                    loader: path.resolve(__dirname, '/path/to/css-loader/index.js'),
                                     options: {},
                                 },
                                 {
-                                    loader: '/path/to/postcss-loader/lib/index.js',
+                                    loader: path.resolve(__dirname, '/path/to/postcss-loader/lib/index.js'),
                                     options: {},
                                 },
                             ],
                         },
                         {
                             exclude: [/\.js$/, /\.html$/, /\.json$/],
-                            loader: '/path/to/file-loader/dist/cjs.js',
+                            loader: path.resolve(__dirname, '/path/to/file-loader/dist/cjs.js'),
                             options: {name: 'static/media/[name].[hash:8].[ext]'},
                         },
                     ]
@@ -57,47 +58,47 @@ describe('SVG React Loader rewire', () => {
                     test: /\.(js|jsx|mjs)$/,
                     enforce: 'pre',
                     use: [
-                        {options: {}, loader: '/path/to/eslint-loader/index.js'}
+                        {options: {}, loader: path.resolve(__dirname, '/path/to/eslint-loader/index.js')}
                     ],
-                    include: '/path/to/src'
+                    include: path.resolve(__dirname, '/path/to/src')
                 },
                 {
                     oneOf: [
                         {
                             test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
-                            loader: '/path/to/url-loader/index.js',
+                            loader: path.resolve(__dirname, '/path/to/url-loader/index.js'),
                             options: {},
                         },
                         {
                             test: /\.(js|jsx|mjs)$/,
-                            include: '/path/to/src',
-                            loader: '/path/to/babel-loader/lib/index.js',
+                            include: path.resolve(__dirname, '/path/to/src'),
+                            loader: path.resolve(__dirname, '/path/to/babel-loader/lib/index.js'),
                             options: {},
                         },
                         {
                             test: /\.css$/,
                             loader: [
                                 {
-                                    loader: '/path/to/extract-text-webpack-plugin/dist/loader.js',
+                                    loader: path.resolve(__dirname, '/path/to/extract-text-webpack-plugin/dist/loader.js'),
                                     options: {}
                                 },
                                 {
-                                    loader: '/path/to/style-loader/index.js',
+                                    loader: path.resolve(__dirname, '/path/to/style-loader/index.js'),
                                     options: {}
                                 },
                                 {
-                                    loader: '/path/to/css-loader/index.js',
+                                    loader: path.resolve(__dirname, '/path/to/css-loader/index.js'),
                                     options: {}
                                 },
                                 {
-                                    loader: '/path/to/postcss-loader/lib/index.js',
+                                    loader: path.resolve(__dirname, '/path/to/postcss-loader/lib/index.js'),
                                     options: {}
                                 }
                             ]
                         },
                         {
                             exclude: [/\.js$/, /\.html$/, /\.json$/],
-                            loader: '/path/to/file-loader/dist/cjs.js',
+                            loader: path.resolve(__dirname, '/path/to/file-loader/dist/cjs.js'),
                             options: {name: 'static/media/[name].[hash:8].[ext]'},
                         },
                     ]
@@ -116,11 +117,11 @@ describe('SVG React Loader rewire', () => {
         })
 
         it('should set loader on the configuration', () => {
-            expect(svgLoader.loader).toContain('/svg-react-loader/')
+            expect(svgLoader.loader).toContain(`${path.sep}svg-react-loader${path.sep}`)
         })
 
         it('should insert the SVG loader before the file loader', () => {
-            expect(fileLoader.loader).toContain('/file-loader/')
+            expect(fileLoader.loader).toContain(`${path.sep}file-loader${path.sep}`)
         })
     })
 
@@ -135,11 +136,11 @@ describe('SVG React Loader rewire', () => {
         })
 
         it('should set loader on the configuration', () => {
-            expect(svgLoader.loader).toContain('/svg-react-loader/')
+            expect(svgLoader.loader).toContain(`${path.sep}svg-react-loader${path.sep}`)
         })
 
         it('should insert the SVG loader before the file loader', () => {
-            expect(fileLoader.loader).toContain('/file-loader/')
+            expect(fileLoader.loader).toContain(`${path.sep}file-loader${path.sep}`)
         })
     })
 })

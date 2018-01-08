@@ -1,3 +1,4 @@
+const path = require("path");
 const ruleChildren = (loader) => loader.use || loader.oneOf || Array.isArray(loader.loader) && loader.loader || []
 
 const findIndexAndRules = (rulesSource, ruleMatcher) => {
@@ -7,7 +8,7 @@ const findIndexAndRules = (rulesSource, ruleMatcher) => {
     return result
 }
 
-const createLoaderMatcher = (loader) => (rule) => rule.loader && rule.loader.indexOf(`/${loader}/`) !== -1
+const createLoaderMatcher = (loader) => (rule) => rule.loader && rule.loader.indexOf(`${path.sep}${loader}${path.sep}`) !== -1
 const fileLoaderMatcher = createLoaderMatcher('file-loader')
 
 const addBeforeRule = (rulesSource, ruleMatcher, value) => {
