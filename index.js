@@ -19,6 +19,7 @@ const addBeforeRule = (rulesSource, ruleMatcher, value) => {
 module.exports = function (config, env) {
     const svgReactLoader = {
         test: /\.svg$/,
+        exclude: [/[/\\\\]node_modules[/\\\\]/],
         loader: require.resolve('svg-react-loader')
     }
 
