@@ -57,3 +57,21 @@ export default () => (
     <div>look, it's a triangle: <Triangle/></div>
 )
 ```
+
+### Webpack & SVG React Loader Options
+
+If you need to add extra webpack or SVG react loader options, you can pass them as additional arguments in your `config-overrides.js` file:
+
+```javascript
+
+config = rewireSvgReactLoader(config, env, {
+    // webpack config options
+    include: []
+},
+{
+    // SVG react loader options
+    classIdPrefix: '[name]-[hash:8]__',
+});
+```
+
+If you want to include SVG react loader options but not webpack options, be sure to pass in an empty dictionary as the 3rd argument. You can get more information on those options in the [SVG react loader documentation](https://github.com/jhamlet/svg-react-loader#query-params).
