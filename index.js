@@ -16,10 +16,11 @@ const addBeforeRule = (rulesSource, ruleMatcher, value) => {
     rules.splice(index, 0, value)
 }
 
-module.exports = function (config, env) {
+module.exports = function (config, env, options) {
     const svgReactLoader = {
         test: /\.svg$/,
-        loader: require.resolve('svg-react-loader')
+        loader: require.resolve('svg-react-loader'),
+        query: options
     }
 
     addBeforeRule(config.module.rules, fileLoaderMatcher, svgReactLoader)
