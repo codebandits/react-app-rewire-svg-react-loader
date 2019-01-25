@@ -1,3 +1,7 @@
+# Archive Notice
+
+This project is archived. Create React App v2 introduced [SVG Components](https://facebook.github.io/create-react-app/docs/adding-images-fonts-and-files#adding-svgs). We recommend using the native support for SVG Components instead of this project.
+
 # react-app-rewire-svg-react-loader
 
 Add [SVG React Loader](https://github.com/jhamlet/svg-react-loader) to your [create-react-app](https://github.com/facebookincubator/create-react-app) via [react-app-rewired](https://github.com/timarney/react-app-rewired).
